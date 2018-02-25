@@ -1,4 +1,6 @@
 import numpy as np
+import matplotlib.pyplot as plt
+
 
 class Life:
 
@@ -16,7 +18,7 @@ class Life:
                     self.state[i][j] = 1
                 else:
                     self.state[i][j] = 0
-        print(self.state)
+
 
     def survival(self, x, y):
         '''Determines if the cell will be alive. Returns a boolean value'''
@@ -53,9 +55,18 @@ class Life:
                     else:
                         self.new_state[x][y] = 0
 
+            #Simple matplotlib animation
+            plt.imshow(self.state, cmap='binary')
+            plt.axis('off')
+            plt.ion()
+            plt.draw()
+            plt.show()
+            plt.pause(0.5)
+
             self.state = self.new_state
-            print(self.state)
             t += 1
+
+
 
 if __name__ == '__main__':
     N = input("Specify the size of the life grid. Enter an integer between 1 and 50: ")
